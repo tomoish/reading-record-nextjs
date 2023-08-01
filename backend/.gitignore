@@ -4,6 +4,9 @@
 # 20230801
 record/migrations/*
 !record/migrations/__init__.py
+account/migrations/*
+!account/migrations/__init__.py
+
 
 ### Django ###
 *.log
