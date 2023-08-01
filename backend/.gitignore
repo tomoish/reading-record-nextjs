@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/django
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
 
+# 20230801
+record/migrations/*
+!record/migrations/__init__.py
+
 ### Django ###
 *.log
 *.pot
