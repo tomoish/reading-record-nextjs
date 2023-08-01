@@ -30,7 +30,8 @@ env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.get_value('DEBUG',bool)
+# DEBUG = env.get_value('DEBUG',bool)
+DEBUG = False
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
@@ -122,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 REST_FRAMEWORK = {
-    # 'EXCEPTION_HANDLER': 'utils.custom_exception_handler.custom_exception_handler',
+    'EXCEPTION_HANDLER': 'utils.custom_exception_handler.custom_exception_handler',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
