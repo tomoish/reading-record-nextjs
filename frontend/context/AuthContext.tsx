@@ -13,6 +13,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const router = useRouter();
 
+    useEffect(() => {
+    if (!user) {
+      loadUser();
+    }
+  }, [user]);
+
   // Login user
   const login = async ({
     username,
@@ -32,10 +38,32 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         // loadUser();
         SetIsAuthenticated(true);
         setLoading(false);
-        router.push("/");
+        router.push("/home");
       }
     } catch (error) {
       setLoading(false);
+      setError(
+        error.response &&
+          (error.response.data.detail || error.response.data.error)
+      );
+    }
+  };
+
+  const loadUser = async () => {
+    try {
+      setLoading(true);
+
+      const res = await axios.get("/api/auth/user");
+
+      if (res.data.user) {
+        SetIsAuthenticated(true);
+        setLoading(false);
+        setUser(res.data.user);
+      }
+    } catch (error) {
+      setLoading(false);
+      SetIsAuthenticated(false);
+      setUser(null);
       setError(
         error.response &&
           (error.response.data.detail || error.response.data.error)

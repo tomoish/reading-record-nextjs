@@ -15,7 +15,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated && !loading) {
-      router.push("/");
+      router.push("/home");
     }
   }, [isAuthenticated, error, loading]);
 
