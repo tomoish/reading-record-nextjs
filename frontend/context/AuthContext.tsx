@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const router = useRouter();
 
-    useEffect(() => {
+  useEffect(() => {
     if (!user) {
       loadUser();
     }
@@ -71,6 +71,25 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const logout = async () => {
+    try {
+      const res = await axios.post("/api/auth/logout");
+
+      if (res.data.success) {
+        SetIsAuthenticated(false);
+        setUser(null);
+      }
+    } catch (error) {
+      setLoading(false);
+      SetIsAuthenticated(false);
+      setUser(null);
+      setError(
+        error.response &&
+          (error.response.data.detail || error.response.data.error)
+      );
+    }
+  };
+
   const clearErrors = () => {
     setError(null);
   };
@@ -83,6 +102,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         error,
         isAuthenticated,
         login,
+        logout,
         clearErrors,
       }}
     >

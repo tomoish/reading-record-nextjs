@@ -3,11 +3,15 @@ import Link from "next/link";
 import AuthContext from "@/context/AuthContext";
 
 const MyPage = () => {
-  const { loading, user } = useContext(AuthContext);
+  const { loading, user, logout } = useContext(AuthContext);
+
+  const logoutHandler = () => {
+    logout();
+  };
 
   return (
     <div>
-      <h1>{`${user.first_name}`}, welcome!</h1>
+      {user ? <h1>{`${user.first_name}`}, welcome!</h1> : <h1>Loading...</h1>}
 
       <div className="my-page">
         <div className="my-page-box">
@@ -54,7 +58,7 @@ const MyPage = () => {
       </div>
 
       <div className="btn">
-        <Link href="{% url 'Logout' %}" className="btn-c">
+        <Link href="/" className="btn-c" onClick={logoutHandler}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="26"
