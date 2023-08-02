@@ -11,7 +11,8 @@ const Login = () => {
 
   const router = useRouter();
 
-  const { loading, error, isAuthenticated, login } = useContext(AuthContext);
+  const { loading, error, isAuthenticated, login, clearErrors } =
+    useContext(AuthContext);
 
   useEffect(() => {
     if (isAuthenticated && !loading) {
@@ -42,7 +43,6 @@ const Login = () => {
               <td>
                 <input
                   type="email"
-                  placeholder="Enter Your Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   pattern="\S+@\S+\.\S+"
@@ -59,7 +59,6 @@ const Login = () => {
               <td>
                 <input
                   type="password"
-                  placeholder="Enter Your Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
