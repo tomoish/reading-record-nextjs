@@ -34,9 +34,9 @@ const Register = () => {
 
   return (
     <div className="form-wrapper">
-      <div className="login-logo">
+      <Link href="/" className="login-logo">
         <Image src="/images/logo.png" alt="HOME" width="151" height="60" />
-      </div>
+      </Link>
 
       <h1>Sign Up</h1>
 
@@ -136,7 +136,7 @@ const Register = () => {
 
       <div className="form-footer">
         <p>
-          <a href="/login">Sign In</a>
+          <Link href="/login">Sign In</Link>
         </p>
       </div>
     </div>

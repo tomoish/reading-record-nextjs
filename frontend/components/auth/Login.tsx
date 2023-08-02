@@ -28,9 +28,9 @@ const Login = () => {
 
   return (
     <div className="form-wrapper">
-      <div className="login-logo">
+      <Link href="/" className="login-logo">
         <Image src="/images/logo.png" alt="HOME" width="151" height="60" />
-      </div>
+      </Link>
 
       <h1>Sign In</h1>
       <form action="/send-data-here" method="post" onSubmit={submitHandler}>
@@ -82,7 +82,7 @@ const Login = () => {
 
       <div className="form-footer">
         <p>
-          <a href="/register">Create an account</a>
+          <Link href="/register">Create an account</Link>
         </p>
       </div>
     </div>
