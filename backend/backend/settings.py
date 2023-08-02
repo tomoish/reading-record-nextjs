@@ -30,7 +30,7 @@ env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.get_value('DEBUG',bool)
+DEBUG = env.get_value('DEBUG', bool)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -93,7 +94,7 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env.get_value('DATABASE_DB'), 
+        'NAME': env.get_value('DATABASE_DB'),
         'USER': env.get_value('DATABASE_USER'),
         'PASSWORD': env.get_value('DATABASE_PASSWORD'),
         'HOST': 'localhost',
@@ -133,6 +134,8 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
 }
+
+CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS')
 
 
 # Internationalization
