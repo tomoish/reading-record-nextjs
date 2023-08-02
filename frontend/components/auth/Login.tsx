@@ -17,7 +17,7 @@ const Login = () => {
     if (isAuthenticated && !loading) {
       router.push("/home");
     }
-  }, [isAuthenticated, error, loading]);
+  }, [isAuthenticated, loading]);
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
