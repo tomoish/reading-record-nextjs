@@ -53,7 +53,7 @@ a {
 header
 ====================================================*/
 
-header {
+.header {
   background-color: rgb(254 226 226);
   padding: 0.5rem/* 8px */;
 }
@@ -158,14 +158,15 @@ header {
 #home,
 #record_create,
 #record_create_complete {
-  background-image: url(../images/background_index.jpg);
+  background-image: url(../public/images/background_index.jpg);
   background-color: rgba(255, 255, 255, 0.7);
   background-blend-mode: lighten;
   background-repeat: no-repeat;
-
-  background-position: center center;
-  background-attachment: fixed;
   background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 /* 
