@@ -13,15 +13,15 @@ const Layout = ({
   id: string;
 }) => {
   return (
-    <div>
+    <>
       <Head>
         <title>{title}</title>
       </Head>
-      <body id={id}>
+      <div id={id}>
         <Header />
         {children}
-      </body>
-    </div>
+      </div>
+    </>
   );
 };
 
