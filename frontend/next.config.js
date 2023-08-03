@@ -6,8 +6,8 @@ const nextConfig = {
   },
   env: {
     API_URL: process.env.API_URL,
-    guest_email:process.env.guest_email,
-    guest_password:process.env.guest_password,
+    guest_email: process.env.guest_email,
+    guest_password: process.env.guest_password,
   },
 };
 

@@ -10,7 +10,7 @@ const Header = () => {
     <div className="header">
       <nav className="header-nav container">
         <div>
-          <Image src="/images/logo.png" alt="HOME" width="131" height="52" />
+          <Image src="/images/logo.png" alt="HOME" width="131" height="52" priority/>
         </div>
 
         {user ? (
