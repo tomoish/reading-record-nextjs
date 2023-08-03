@@ -37,7 +37,7 @@ const MyPage = () => {
           </Link>
         </div>
         <div className="my-page-box">
-          <Link href="/show-records" className="btn-my-page">
+          <Link href="/my-records" className="btn-my-page">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="60"

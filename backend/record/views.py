@@ -83,7 +83,7 @@ def getCurrentUserRecords(request):
 
     args = {'user': request.user.id}
 
-    records = Record.objects.filter(**args)
+    records = Record.objects.filter(**args).order_by('-posted_at')
     serializer = RecordSerializer(records, many=True)
 
     return Response(serializer.data)

@@ -162,8 +162,22 @@ header
   background-blend-mode: lighten;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
+  background-attachment: fixed;
   height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#my-records {
+  background-image: url(../public/images/background_index.jpg);
+  background-color: rgba(255, 255, 255, 0.7);
+  background-blend-mode: lighten;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  /* height: 100vh; */
   margin: 0;
   padding: 0;
 }
