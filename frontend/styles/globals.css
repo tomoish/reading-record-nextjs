@@ -547,6 +547,12 @@ loading screen
   align-items: center;
 }
 
+.cbtn {
+  margin-top: 50px;
+  text-align: center;
+  align-items: center;
+}
+
 .abtn-c {
   font-size: 1.3rem;
   padding: 1.5rem 2rem 1.5rem 2rem;

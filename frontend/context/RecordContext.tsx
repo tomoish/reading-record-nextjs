@@ -11,8 +11,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
   const [created, setCreated] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [deleted, setDeleted] = useState(false);
-  const [applied, setApplied] = useState(false);
-
+  
   const router = useRouter();
 
   const newRecord = async (data, access_token) => {

@@ -6,7 +6,7 @@ const RecordItem = ({ record }) => {
   return (
     <div className="record_list">
       <div className="button004">
-        <Link href={`/detail/${record.id}`}>{record.book_title}</Link>
+        <Link href={`/record/${record.id}`}>{record.book_title}</Link>
       </div>
       <div className="record_detail">
         {record.thumbnail_url ? (
