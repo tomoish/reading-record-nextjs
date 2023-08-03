@@ -5,8 +5,10 @@ import { isAuthenticatedUser } from "@/utils/isAuthenticated";
 import axios from "axios";
 
 export default function MyJobPage({ records, access_token }) {
+  const className = `${records.length !== 0 ? "my-records" : "home"}`;
+
   return (
-    <Layout title="My Records" id="my-records">
+    <Layout title="My Records" id={className}>
       <MyRecords records={records} access_token={access_token} />
     </Layout>
   );
