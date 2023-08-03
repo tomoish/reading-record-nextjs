@@ -203,6 +203,7 @@ header
 }
 
 .btn-c {
+  display: inline-block;
   font-size: 1.8rem;
   padding: 1.5rem 2rem 1.5rem 2rem;
   border-radius: 100vh;

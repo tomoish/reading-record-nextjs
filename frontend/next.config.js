@@ -5,7 +5,9 @@ const nextConfig = {
     domains: ["cover.openbd.jp"],
   },
   env: {
-    API_URL: "http://127.0.0.1:8000",
+    API_URL: process.env.API_URL,
+    guest_email:process.env.guest_email,
+    guest_password:process.env.guest_password,
   },
 };
 

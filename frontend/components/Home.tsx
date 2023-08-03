@@ -1,26 +1,51 @@
-import React from "react";
+import React, { FormEvent, useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+
+import AuthContext from "@/context/AuthContext";
 
 const Home = () => {
-  return (
-        <div id="wrap">
-          <div className="main">
-            <h1>Let's read a book!</h1>
-            <p className="introduction">
-              This website is for keeping your own reading records.
-            </p>
-            <div className="btn">
-              <a href="/register" className="btn-c">
-                Create Account
-              </a>
-            </div>
 
-            <div className="btn">
-              <a href="/guest-login" className="btn-c">
-                Guest user
-              </a>
-            </div>
+  const email = `${process.env.guest_email}`;
+  const password = `${process.env.guest_password}`;
+
+  const router = useRouter();
+
+  const { loading, error, isAuthenticated, login, clearErrors } =
+    useContext(AuthContext);
+
+  useEffect(() => {
+    if (isAuthenticated && !loading) {
+      router.push("/home");
+    }
+  }, [isAuthenticated, loading]);
+
+  const guestLoginHandler = async (e) => {
+    e.preventDefault();
+    // console.log(email, password);
+    login({ username: email, password });
+  };
+
+  return (
+    <div id="wrap">
+      <div className="main">
+        <h1>Let's read a book!</h1>
+        <p className="introduction">
+          This website is for keeping your own reading records.
+        </p>
+        <div className="btn">
+          <Link href="/register" className="btn-c">
+            Create Account
+          </Link>
+        </div>
+
+        <div className="btn">
+          <div className="btn-c" onClick={guestLoginHandler}>
+            Guest user
           </div>
         </div>
+      </div>
+    </div>
   );
 };
 
