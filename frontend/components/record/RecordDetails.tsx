@@ -35,6 +35,7 @@ const RecordDetails = ({ record, access_token }) => {
       <div className="my-page">
         <div className="cbtn">
           <div className="abtn-c">
+            <Link href={`/record/update/${record.id}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -47,6 +48,7 @@ const RecordDetails = ({ record, access_token }) => {
               />
             </svg>
             Correct a record
+            </Link>
           </div>
         </div>
         <div className="cbtn">
@@ -67,7 +69,7 @@ const RecordDetails = ({ record, access_token }) => {
         </div>
         <div className="cbtn">
           <div className="abtn-c">
-            <Link href="/home">
+            <Link href="/my-records">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
