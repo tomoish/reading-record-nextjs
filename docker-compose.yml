@@ -2,6 +2,7 @@ version: '3.8'
  
 services:
   web:
+    container_name: web
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -22,6 +23,7 @@ services:
       - ./backend/.env
 
   nginx:
+    container_name: nginx
     build: ./nginx
     volumes:
       - static_volume:/home/app/web/static

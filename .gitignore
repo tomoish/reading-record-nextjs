@@ -1,1 +1,5 @@
+# 20230804
+# Exclude files for production environment.
+*prod*
+
 .DS_Store
