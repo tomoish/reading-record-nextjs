@@ -3,17 +3,15 @@ version: '3.8'
 services:
   web:
     build:
-      context: ./book_project
+      context: ./backend
       dockerfile: Dockerfile
-    command: gunicorn book_project.wsgi:application --bind 0.0.0.0:8000
-    # volumes:
-    #   - ./book_project/:/usr/src/app/
+    command: gunicorn backend.wsgi:application --bind 0.0.0.0:8000
     volumes:
         - static_volume:/home/app/web/static
     expose:
       - 8000
     env_file:
-      - ./book_project/.env
+      - ./backend/.env
     depends_on:
       - db
   db:
@@ -21,7 +19,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - ./book_project/.env
+      - ./backend/.env
 
   nginx:
     build: ./nginx
