@@ -3,7 +3,35 @@ import { useState, useEffect, createContext } from "react";
 
 import { useRouter } from "next/router";
 
-const RecordContext = createContext();
+interface RecordContextType {
+  loading: boolean;
+  error: any;
+  created: boolean;
+  updated: boolean;
+  deleted: boolean;
+  newRecord: (data: any, access_token: any) => Promise<void>;
+  updateRecord: (id: any, data: any, access_token: any) => Promise<void>;
+  deleteRecord: (id: any, access_token: any) => Promise<void>;
+  setUpdated: React.Dispatch<React.SetStateAction<boolean>>;
+  setCreated: React.Dispatch<React.SetStateAction<boolean>>;
+  setDeleted: React.Dispatch<React.SetStateAction<boolean>>;
+  clearErrors: () => void;
+}
+
+const RecordContext = createContext<RecordContextType>({
+  loading: false,
+  error: null,
+  created: false,
+  updated: false,
+  deleted: false,
+  newRecord: async (data: any, access_token: any) => {},
+  updateRecord: async (id: any, data: any, access_token: any) => {},
+  deleteRecord: async (id: any, access_token: any) => {},
+  setUpdated: () => {},
+  setCreated: () => {},
+  setDeleted: () => {},
+  clearErrors: () => {},
+});
 
 export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(false);
@@ -14,7 +42,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
   
   const router = useRouter();
 
-  const newRecord = async (data, access_token) => {
+  const newRecord = async (data:any, access_token:any) => {
     try {
       setLoading(true);
 
@@ -33,7 +61,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
         setCreated(true);
         router.push("/home");
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       setError(
         error.response &&
@@ -42,7 +70,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const updateRecord = async (id, data, access_token) => {
+  const updateRecord = async (id: any, data: any, access_token: any) => {
     try {
       setLoading(true);
 
@@ -60,7 +88,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(false);
         setUpdated(true);
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       setError(
         error.response &&
@@ -69,7 +97,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const deleteRecord = async (id, access_token) => {
+  const deleteRecord = async (id: any, access_token: any) => {
     try {
       setLoading(true);
 
@@ -84,8 +112,8 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
 
       setLoading(false);
       setDeleted(true);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      // console.log(error);
       setLoading(false);
       setError(
         error.response &&

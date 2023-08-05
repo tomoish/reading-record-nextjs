@@ -3,7 +3,48 @@ import { useState, useEffect, createContext } from "react";
 
 import { useRouter } from "next/router";
 
-const AuthContext = createContext();
+type AuthContextType = {
+  loading: boolean;
+  user: any;
+  isAuthenticated: boolean;
+  error: any;
+  login: (data: { username: string; password: string }) => Promise<void>;
+  register: (data: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+  }) => Promise<void>;
+  logout: () => Promise<void>;
+  clearErrors: () => void;
+};
+
+const AuthContext = createContext<AuthContextType>({
+  loading: false,
+  user: null,
+  isAuthenticated: false,
+  error: null,
+  login: async ({
+    username,
+    password,
+  }: {
+    username: string;
+    password: string;
+  }) => {},
+  register: async ({
+    firstName,
+    lastName,
+    email,
+    password,
+  }: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+  }) => {},
+  logout: async () => {},
+  clearErrors: () => {},
+});
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(false);
@@ -40,7 +81,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(false);
         router.push("/home");
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       setError(
         error.response &&
@@ -49,7 +90,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const register = async ({ firstName, lastName, email, password }) => {
+  const register = async ({
+    firstName,
+    lastName,
+    email,
+    password,
+  }: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+  }) => {
     try {
       setLoading(true);
 
@@ -64,7 +115,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(false);
         router.push("/login");
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       setError(
         error.response &&
@@ -84,7 +135,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(false);
         setUser(res.data.user);
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       SetIsAuthenticated(false);
       setUser(null);
@@ -104,7 +155,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setUser(null);
         router.push("/");
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       SetIsAuthenticated(false);
       setUser(null);
