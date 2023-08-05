@@ -137,6 +137,7 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS')
 
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS')
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
