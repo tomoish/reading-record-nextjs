@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const RecordItem = ({ record }) => {
+const RecordItem = ({ record }: {record: any}) => {
   return (
     <div className="record_list">
       <div className="button004">

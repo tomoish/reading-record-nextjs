@@ -6,7 +6,13 @@ import RecordItem from "./RecordItem";
 import RecordContext from "@/context/RecordContext";
 import { useRouter } from "next/router";
 
-const MyRecords = ({ records, access_token }) => {
+const MyRecords = ({
+  records,
+  access_token,
+}: {
+  records: any;
+  access_token: any;
+}) => {
   const { clearErrors, error, loading, deleted, deleteRecord, setDeleted } =
     useContext(RecordContext);
 
@@ -72,16 +78,13 @@ const MyRecords = ({ records, access_token }) => {
       </div>
 
       <div className="main show_records">
-        {/* <form action="#" method="get" className="search-form-006">
-      <label>
-        <input name="query" value="{{ request.GET.query }}" type="text" placeholder="Input book title"/>
-      </label>
-      <button type="submit" aria-label="Search"></button>
-    </form> */}
 
-    {records && records.map((record) => <RecordItem key={record.id} record={record} />)}
+        {records &&
+          records.map((record: any) => (
+            <RecordItem key={record.id} record={record} />
+          ))}
       </div>
-      <br/>
+      <br />
     </>
   );
 };

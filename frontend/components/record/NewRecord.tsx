@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import RecordContext from "@/context/RecordContext";
 
-const NewRecord = ({ access_token }) => {
+const NewRecord = ({ access_token }: { access_token: any }) => {
   const [bookTitle, setBookTitle] = useState("");
   const [isbn, setIsbn] = useState("");
   const [date, setDate] = useState("");
@@ -24,7 +24,7 @@ const NewRecord = ({ access_token }) => {
     }
   }, [error, created]);
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: any) => {
     e.preventDefault();
 
     const data = {
@@ -135,10 +135,9 @@ const NewRecord = ({ access_token }) => {
                 <td></td>
                 <td>
                   <div className="register-button">
-                    <button
-                      type="submit"
-                      className="button"
-                    >Record</button>
+                    <button type="submit" className="button">
+                      Record
+                    </button>
                   </div>
                 </td>
               </tr>

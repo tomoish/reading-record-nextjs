@@ -4,7 +4,13 @@ import { useRouter } from "next/router";
 
 import RecordContext from "@/context/RecordContext";
 
-const UpdateRecord = ({ record, access_token }) => {
+const UpdateRecord = ({
+  record,
+  access_token,
+}: {
+  record: any;
+  access_token: any;
+}) => {
   const [bookTitle, setBookTitle] = useState(record.book_title);
   const [isbn, setIsbn] = useState(record.isbn || "");
   const [date, setDate] = useState(record.date);
@@ -24,11 +30,11 @@ const UpdateRecord = ({ record, access_token }) => {
 
     if (updated) {
       setUpdated(false);
-      router.push("/my-records")
+      router.push("/my-records");
     }
   }, [error, updated]);
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: any) => {
     e.preventDefault();
 
     const data = {
@@ -139,10 +145,9 @@ const UpdateRecord = ({ record, access_token }) => {
                 <td></td>
                 <td>
                   <div className="register-button">
-                    <button
-                      type="submit"
-                      className="button"
-                    >Update</button>
+                    <button type="submit" className="button">
+                      Update
+                    </button>
                   </div>
                 </td>
               </tr>

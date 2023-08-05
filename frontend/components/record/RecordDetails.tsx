@@ -6,7 +6,13 @@ import Link from "next/link";
 
 import { useRouter } from "next/router";
 
-const RecordDetails = ({ record, access_token }) => {
+const RecordDetails = ({
+  record,
+  access_token,
+}: {
+  record: any;
+  access_token: any;
+}) => {
   const { clearErrors, error, loading, deleted, deleteRecord, setDeleted } =
     useContext(RecordContext);
 
@@ -23,7 +29,7 @@ const RecordDetails = ({ record, access_token }) => {
     }
   }, [error, deleted]);
 
-  const deleteRecordHandler = (id) => {
+  const deleteRecordHandler = (id: any) => {
     deleteRecord(id, access_token);
   };
 

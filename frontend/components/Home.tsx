@@ -20,7 +20,7 @@ const Home = () => {
     }
   }, [isAuthenticated, loading]);
 
-  const guestLoginHandler = async (e) => {
+  const guestLoginHandler = async (e: any) => {
     e.preventDefault();
     // console.log(email, password);
     login({ username: email, password });
