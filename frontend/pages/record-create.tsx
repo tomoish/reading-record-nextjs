@@ -3,7 +3,7 @@ import NewRecord from "@/components/record/NewRecord";
 
 import { isAuthenticatedUser } from "@/utils/isAuthenticated";
 
-export default function NewJobPage({ access_token }) {
+export default function NewJobPage({ access_token }: { access_token: any }) {
   return (
     <Layout title="Post a new Job" id="record-create">
       <NewRecord access_token={access_token} />
@@ -11,7 +11,7 @@ export default function NewJobPage({ access_token }) {
   );
 }
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps({ req }: { req: any }) {
   const access_token = req.cookies.access;
 
   const user = await isAuthenticatedUser(access_token);

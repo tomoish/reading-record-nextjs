@@ -4,7 +4,15 @@ import UpdateRecord from "@/components/record/UpdateRecord";
 
 import axios from "axios";
 
-export default function UpdateJobPage({ record, access_token, error }) {
+export default function UpdateJobPage({
+  record,
+  access_token,
+  error,
+}: {
+  record: any;
+  access_token: any;
+  error: any;
+}) {
   // if (error?.includes("Not found")) return <NotFound />;
 
   return (
@@ -14,7 +22,13 @@ export default function UpdateJobPage({ record, access_token, error }) {
   );
 }
 
-export async function getServerSideProps({ req, params }) {
+export async function getServerSideProps({
+  req,
+  params,
+}: {
+  req: any;
+  params: any;
+}) {
   const access_token = req.cookies.access;
   const user = await isAuthenticatedUser(access_token);
 
@@ -45,7 +59,7 @@ export async function getServerSideProps({ req, params }) {
         access_token,
       },
     };
-  } catch (error) {
+  } catch (error: any) {
     return {
       props: {
         error: error.response.data,
