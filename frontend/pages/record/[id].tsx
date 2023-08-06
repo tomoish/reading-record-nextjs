@@ -32,7 +32,7 @@ export async function getServerSideProps({
   params,
 }: {
   req: any;
-  params: any;
+  params: { id: string };
 }) {
   const access_token = req.cookies.access;
 
@@ -47,7 +47,7 @@ export async function getServerSideProps({
     };
   }
 
-  console.log("params:", params);
+  // console.log("params:", params);
 
   try {
     const res = await axios.get(
@@ -58,8 +58,7 @@ export async function getServerSideProps({
         },
       }
     );
-    console.log(res.data);
-    // console.log(res.data.job);
+    // console.log(res.data);
     const record = res.data;
 
     return {
@@ -68,7 +67,7 @@ export async function getServerSideProps({
         access_token,
       },
     };
-  } catch (error:any) {
+  } catch (error: any) {
     return {
       props: {
         error: error.response.data,

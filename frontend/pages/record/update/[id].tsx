@@ -27,7 +27,7 @@ export async function getServerSideProps({
   params,
 }: {
   req: any;
-  params: any;
+  params: { id: string };
 }) {
   const access_token = req.cookies.access;
   const user = await isAuthenticatedUser(access_token);
