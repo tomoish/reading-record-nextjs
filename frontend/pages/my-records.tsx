@@ -4,17 +4,17 @@ import MyRecords from "@/components/record/MyRecord";
 import { isAuthenticatedUser } from "@/utils/isAuthenticated";
 import axios from "axios";
 
-export default function MyJobPage({ records, access_token }: { records:any; access_token:any }) {
+export default function MyJobPage({ records }: { records: any }) {
   const className = `${records.length !== 0 ? "my-records" : "home"}`;
 
   return (
     <Layout title="My Records" id={className}>
-      <MyRecords records={records} access_token={access_token} />
+      <MyRecords records={records} />
     </Layout>
   );
 }
 
-export async function getServerSideProps({ req }:{ req:any }) {
+export async function getServerSideProps({ req }: { req: any }) {
   const access_token = req.cookies.access;
 
   const user = await isAuthenticatedUser(access_token);
@@ -39,7 +39,6 @@ export async function getServerSideProps({ req }:{ req:any }) {
   return {
     props: {
       records,
-      access_token,
     },
   };
 }
