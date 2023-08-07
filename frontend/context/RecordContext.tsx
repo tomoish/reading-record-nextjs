@@ -9,9 +9,9 @@ interface RecordContextType {
   created: boolean;
   updated: boolean;
   deleted: boolean;
-  newRecord: (data: any, access_token: any) => Promise<void>;
-  updateRecord: (id: any, data: any, access_token: any) => Promise<void>;
-  deleteRecord: (id: any, access_token: any) => Promise<void>;
+  newRecord: (data: any, access_token: string) => Promise<void>;
+  updateRecord: (id: any, data: any, access_token: string) => Promise<void>;
+  deleteRecord: (id: any, access_token: string) => Promise<void>;
   setUpdated: React.Dispatch<React.SetStateAction<boolean>>;
   setCreated: React.Dispatch<React.SetStateAction<boolean>>;
   setDeleted: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,9 +24,9 @@ const RecordContext = createContext<RecordContextType>({
   created: false,
   updated: false,
   deleted: false,
-  newRecord: async (data: any, access_token: any) => {},
-  updateRecord: async (id: any, data: any, access_token: any) => {},
-  deleteRecord: async (id: any, access_token: any) => {},
+  newRecord: async (data: any, access_token: string) => {},
+  updateRecord: async (id: any, data: any, access_token: string) => {},
+  deleteRecord: async (id: any, access_token: string) => {},
   setUpdated: () => {},
   setCreated: () => {},
   setDeleted: () => {},
@@ -70,7 +70,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const updateRecord = async (id: any, data: any, access_token: any) => {
+  const updateRecord = async (id: any, data: any, access_token: string) => {
     try {
       setLoading(true);
 
@@ -97,7 +97,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const deleteRecord = async (id: any, access_token: any) => {
+  const deleteRecord = async (id: any, access_token: string) => {
     try {
       setLoading(true);
 

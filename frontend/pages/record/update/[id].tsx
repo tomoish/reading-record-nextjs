@@ -10,7 +10,7 @@ export default function UpdateJobPage({
   error,
 }: {
   record: any;
-  access_token: any;
+  access_token: string;
   error: any;
 }) {
   // if (error?.includes("Not found")) return <NotFound />;

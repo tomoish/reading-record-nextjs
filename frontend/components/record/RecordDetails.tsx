@@ -11,7 +11,7 @@ const RecordDetails = ({
   access_token,
 }: {
   record: any;
-  access_token: any;
+  access_token: string;
 }) => {
   const { clearErrors, error, loading, deleted, deleteRecord, setDeleted } =
     useContext(RecordContext);

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import RecordContext from "@/context/RecordContext";
 
-const NewRecord = ({ access_token }: { access_token: any }) => {
+const NewRecord = ({ access_token }: { access_token: string }) => {
   const [bookTitle, setBookTitle] = useState("");
   const [isbn, setIsbn] = useState("");
   const [date, setDate] = useState("");

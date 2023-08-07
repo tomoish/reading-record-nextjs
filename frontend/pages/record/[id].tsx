@@ -10,7 +10,7 @@ export default function JobDetailsPage({
   error,
 }: {
   record: any;
-  access_token: any;
+  access_token: string;
   error: any;
 }) {
   // console.log(record);

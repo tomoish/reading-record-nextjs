@@ -9,7 +9,7 @@ const UpdateRecord = ({
   access_token,
 }: {
   record: any;
-  access_token: any;
+  access_token: string;
 }) => {
   const [bookTitle, setBookTitle] = useState(record.book_title);
   const [isbn, setIsbn] = useState(record.isbn || "");
