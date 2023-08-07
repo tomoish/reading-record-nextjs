@@ -22,7 +22,6 @@ const Home = () => {
 
   const guestLoginHandler = async (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    // console.log(email, password);
     login({ username: email, password });
   };
 
