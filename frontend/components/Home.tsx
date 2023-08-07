@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, useContext, useEffect } from "react";
+import React, { MouseEvent, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -20,7 +20,7 @@ const Home = () => {
     }
   }, [isAuthenticated, loading]);
 
-  const guestLoginHandler = async (e: any) => {
+  const guestLoginHandler = async (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     // console.log(email, password);
     login({ username: email, password });
