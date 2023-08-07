@@ -4,15 +4,8 @@ import RecordItem from "./RecordItem";
 import RecordContext from "@/context/RecordContext";
 import { useRouter } from "next/router";
 
-const MyRecords = ({
-  records,
-  access_token,
-}: {
-  records: any;
-  access_token: any;
-}) => {
-  const { clearErrors, error, loading, deleted, deleteRecord, setDeleted } =
-    useContext(RecordContext);
+const MyRecords = ({ records }: { records: any }) => {
+  const { clearErrors, error, loading, deleted } = useContext(RecordContext);
 
   const router = useRouter();
 
@@ -20,16 +13,7 @@ const MyRecords = ({
     if (error) {
       clearErrors();
     }
-
-    // if (deleted) {
-    //   setDeleted(false);
-    //   router.reload(router.asPath);
-    // }
   }, [error, deleted]);
-
-  // const deleteRecordHandler = (id) => {
-  //   deleteRecord(id, access_token);
-  // };
 
   return (
     <>
@@ -76,7 +60,6 @@ const MyRecords = ({
       </div>
 
       <div className="main show_records">
-
         {records &&
           records.map((record: any) => (
             <RecordItem key={record.id} record={record} />
