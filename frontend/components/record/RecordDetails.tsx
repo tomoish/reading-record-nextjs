@@ -30,7 +30,7 @@ const RecordDetails = ({
     }
   }, [error, deleted]);
 
-  const deleteRecordHandler = (id: any) => {
+  const deleteRecordHandler = (id: number) => {
     deleteRecord(id, access_token);
   };
 

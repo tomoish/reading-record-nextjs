@@ -10,8 +10,8 @@ interface RecordContextType {
   updated: boolean;
   deleted: boolean;
   newRecord: (data: any, access_token: string) => Promise<void>;
-  updateRecord: (id: any, data: any, access_token: string) => Promise<void>;
-  deleteRecord: (id: any, access_token: string) => Promise<void>;
+  updateRecord: (id: number, data: any, access_token: string) => Promise<void>;
+  deleteRecord: (id: number, access_token: string) => Promise<void>;
   setUpdated: React.Dispatch<React.SetStateAction<boolean>>;
   setCreated: React.Dispatch<React.SetStateAction<boolean>>;
   setDeleted: React.Dispatch<React.SetStateAction<boolean>>;
