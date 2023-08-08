@@ -1,10 +1,11 @@
 import Layout from "@/components/layout/Layout";
 import MyRecords from "@/components/record/MyRecord";
+import { RecordType } from "@/types/RecordType";
 
 import { isAuthenticatedUser } from "@/utils/isAuthenticated";
 import axios from "axios";
 
-export default function MyJobPage({ records }: { records: any }) {
+export default function MyJobPage({ records }: { records: RecordType[] }) {
   const className = `${records.length !== 0 ? "my-records" : "home"}`;
 
   return (
