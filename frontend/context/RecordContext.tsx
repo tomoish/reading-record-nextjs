@@ -25,8 +25,8 @@ const RecordContext = createContext<RecordContextType>({
   updated: false,
   deleted: false,
   newRecord: async (data: any, access_token: string) => {},
-  updateRecord: async (id: any, data: any, access_token: string) => {},
-  deleteRecord: async (id: any, access_token: string) => {},
+  updateRecord: async (id: number, data: any, access_token: string) => {},
+  deleteRecord: async (id: number, access_token: string) => {},
   setUpdated: () => {},
   setCreated: () => {},
   setDeleted: () => {},
@@ -39,10 +39,10 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
   const [created, setCreated] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [deleted, setDeleted] = useState(false);
-  
+
   const router = useRouter();
 
-  const newRecord = async (data:any, access_token:any) => {
+  const newRecord = async (data: any, access_token: string) => {
     try {
       setLoading(true);
 
@@ -70,7 +70,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const updateRecord = async (id: any, data: any, access_token: string) => {
+  const updateRecord = async (id: number, data: any, access_token: string) => {
     try {
       setLoading(true);
 
@@ -97,7 +97,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const deleteRecord = async (id: any, access_token: string) => {
+  const deleteRecord = async (id: number, access_token: string) => {
     try {
       setLoading(true);
 
