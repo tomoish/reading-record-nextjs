@@ -3,13 +3,14 @@ import { isAuthenticatedUser } from "@/utils/isAuthenticated";
 import UpdateRecord from "@/components/record/UpdateRecord";
 
 import axios from "axios";
+import { RecordType } from "@/types/RecordType";
 
 export default function UpdateJobPage({
   record,
   access_token,
   error,
 }: {
-  record: any;
+  record: RecordType;
   access_token: string;
   error: any;
 }) {

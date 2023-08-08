@@ -5,12 +5,13 @@ import RecordItem from "./RecordItem";
 import Link from "next/link";
 
 import { useRouter } from "next/router";
+import { RecordType } from "@/types/RecordType";
 
 const RecordDetails = ({
   record,
   access_token,
 }: {
-  record: any;
+  record:  RecordType;
   access_token: string;
 }) => {
   const { clearErrors, error, loading, deleted, deleteRecord, setDeleted } =

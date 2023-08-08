@@ -1,5 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import RecordDetails from "@/components/record/RecordDetails";
+import { RecordType } from "@/types/RecordType";
 
 import { isAuthenticatedUser } from "@/utils/isAuthenticated";
 import axios from "axios";
@@ -9,19 +10,17 @@ export default function JobDetailsPage({
   access_token,
   error,
 }: {
-  record: any;
+  record: RecordType;
   access_token: string;
   error: any;
 }) {
-  // console.log(record);
-  // console.log(error);
 
   if (error?.detail?.includes("Not found")) return <></>;
   else if (error?.message?.includes("You can not read this record"))
     return <></>;
 
   return (
-    <Layout title={record.title} id="home">
+    <Layout title={record.book_title} id="home">
       <RecordDetails record={record} access_token={access_token} />
     </Layout>
   );

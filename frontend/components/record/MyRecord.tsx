@@ -4,7 +4,9 @@ import RecordItem from "./RecordItem";
 import RecordContext from "@/context/RecordContext";
 import { useRouter } from "next/router";
 
-const MyRecords = ({ records }: { records: any }) => {
+import { RecordType } from "@/types/RecordType";
+
+const MyRecords = ({ records }: { records: RecordType[] }) => {
   const { clearErrors, error, loading, deleted } = useContext(RecordContext);
 
   const router = useRouter();
@@ -61,7 +63,7 @@ const MyRecords = ({ records }: { records: any }) => {
 
       <div className="main show_records">
         {records &&
-          records.map((record: any) => (
+          records.map((record: RecordType) => (
             <RecordItem key={record.id} record={record} />
           ))}
       </div>

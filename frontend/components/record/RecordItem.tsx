@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { RecordType } from "@/types/RecordType";
 
-const RecordItem = ({ record }: {record: any}) => {
+const RecordItem = ({ record }: { record: RecordType }) => {
   return (
     <div className="record_list">
       <div className="button004">
@@ -10,7 +11,13 @@ const RecordItem = ({ record }: {record: any}) => {
       </div>
       <div className="record_detail">
         {record.thumbnail_url ? (
-          <Image alt="thumbnail" className="thumbnail" src={`${record.thumbnail_url}`} height={220} width={149.66}/>
+          <Image
+            alt="thumbnail"
+            className="thumbnail"
+            src={`${record.thumbnail_url}`}
+            height={220}
+            width={149.66}
+          />
         ) : (
           <div className="thumbnail gray_thumbnail">
             <p className="thumbnail-none">No data</p>

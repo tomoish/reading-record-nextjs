@@ -3,12 +3,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import RecordContext from "@/context/RecordContext";
+import { RecordType } from "@/types/RecordType";
 
 const UpdateRecord = ({
   record,
   access_token,
 }: {
-  record: any;
+  record: RecordType;
   access_token: string;
 }) => {
   const [bookTitle, setBookTitle] = useState(record.book_title);
