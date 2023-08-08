@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { FormEvent, useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -35,7 +35,7 @@ const UpdateRecord = ({
     }
   }, [error, updated]);
 
-  const submitHandler = (e: any) => {
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const data = {

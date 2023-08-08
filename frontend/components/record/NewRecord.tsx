@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { FormEvent, useContext, useState, useEffect } from "react";
 import Link from "next/link";
 
 import RecordContext from "@/context/RecordContext";
@@ -24,7 +24,7 @@ const NewRecord = ({ access_token }: { access_token: string }) => {
     }
   }, [error, created]);
 
-  const submitHandler = (e: any) => {
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const data = {
