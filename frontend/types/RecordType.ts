@@ -3,6 +3,7 @@ export type RecordType = {
   book_title: string;
   isbn: string;
   thumbnail_url?: string | null;
+  date: string;
   first_page: number;
   final_page: number;
   impression: string;
