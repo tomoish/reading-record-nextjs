@@ -1,3 +1,4 @@
+import { NextApiRequest } from "next";
 import Layout from "@/components/layout/Layout";
 import RecordDetails from "@/components/record/RecordDetails";
 import { RecordType } from "@/types/RecordType";
@@ -14,7 +15,6 @@ export default function JobDetailsPage({
   access_token: string;
   error: any;
 }) {
-
   if (error?.detail?.includes("Not found")) return <></>;
   else if (error?.message?.includes("You can not read this record"))
     return <></>;
@@ -30,7 +30,7 @@ export async function getServerSideProps({
   req,
   params,
 }: {
-  req: any;
+  req: NextApiRequest;
   params: { id: string };
 }) {
   const access_token = req.cookies.access;

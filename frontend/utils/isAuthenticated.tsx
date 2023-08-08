@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const isAuthenticatedUser = async (access_token: string) => {
+export const isAuthenticatedUser = async (access_token: string | undefined) => {
   try {
     const response = await axios.post(
       `${process.env.API_URL}/api/token/verify/`,

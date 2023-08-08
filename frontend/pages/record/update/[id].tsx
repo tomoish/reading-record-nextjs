@@ -1,3 +1,4 @@
+import { NextApiRequest } from "next";
 import Layout from "@/components/layout/Layout";
 import { isAuthenticatedUser } from "@/utils/isAuthenticated";
 import UpdateRecord from "@/components/record/UpdateRecord";
@@ -27,7 +28,7 @@ export async function getServerSideProps({
   req,
   params,
 }: {
-  req: any;
+  req: NextApiRequest;
   params: { id: string };
 }) {
   const access_token = req.cookies.access;

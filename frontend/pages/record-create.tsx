@@ -1,3 +1,4 @@
+import { NextApiRequest } from "next";
 import Layout from "@/components/layout/Layout";
 import NewRecord from "@/components/record/NewRecord";
 
@@ -11,7 +12,7 @@ export default function NewJobPage({ access_token }: { access_token: string }) {
   );
 }
 
-export async function getServerSideProps({ req }: { req: any }) {
+export async function getServerSideProps({ req }: { req: NextApiRequest }) {
   const access_token = req.cookies.access;
 
   const user = await isAuthenticatedUser(access_token);

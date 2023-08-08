@@ -1,3 +1,4 @@
+import { NextApiRequest } from "next";
 import Layout from "@/components/layout/Layout";
 import MyRecords from "@/components/record/MyRecord";
 import { RecordType } from "@/types/RecordType";
@@ -15,7 +16,7 @@ export default function MyJobPage({ records }: { records: RecordType[] }) {
   );
 }
 
-export async function getServerSideProps({ req }: { req: any }) {
+export async function getServerSideProps({ req }: { req: NextApiRequest }) {
   const access_token = req.cookies.access;
 
   const user = await isAuthenticatedUser(access_token);
