@@ -3,7 +3,7 @@ import Layout from "@/components/layout/Layout";
 import { isAuthenticatedUser } from "@/utils/isAuthenticated";
 import UpdateRecord from "@/components/record/UpdateRecord";
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { RecordType } from "@/types/RecordType";
 
 export default function UpdateJobPage({
@@ -13,9 +13,8 @@ export default function UpdateJobPage({
 }: {
   record: RecordType;
   access_token: string;
-  error: any;
+  error: Error | AxiosError;
 }) {
-  // if (error?.includes("Not found")) return <NotFound />;
 
   return (
     <Layout title="Update Record" id="home">
@@ -61,11 +60,19 @@ export async function getServerSideProps({
         access_token,
       },
     };
-  } catch (error: any) {
-    return {
-      props: {
-        error: error.response.data,
-      },
-    };
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      return {
+        props: {
+          error: error.response.data,
+        },
+      };
+    } else if (error instanceof Error) {
+      return {
+        props: {
+          error: error.message,
+        },
+      };
+    }
   }
 }

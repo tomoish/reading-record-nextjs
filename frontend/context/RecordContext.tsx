@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useState, useEffect, createContext } from "react";
 
 import { useRouter } from "next/router";
@@ -6,12 +6,19 @@ import { SubmissionRecordType } from "@/types/RecordType";
 
 interface RecordContextType {
   loading: boolean;
-  error: any;
+  error: Error | AxiosError | null | undefined;
   created: boolean;
   updated: boolean;
   deleted: boolean;
-  newRecord: (data: SubmissionRecordType, access_token: string) => Promise<void>;
-  updateRecord: (id: number, data: SubmissionRecordType, access_token: string) => Promise<void>;
+  newRecord: (
+    data: SubmissionRecordType,
+    access_token: string
+  ) => Promise<void>;
+  updateRecord: (
+    id: number,
+    data: SubmissionRecordType,
+    access_token: string
+  ) => Promise<void>;
   deleteRecord: (id: number, access_token: string) => Promise<void>;
   setUpdated: React.Dispatch<React.SetStateAction<boolean>>;
   setCreated: React.Dispatch<React.SetStateAction<boolean>>;
@@ -26,7 +33,11 @@ const RecordContext = createContext<RecordContextType>({
   updated: false,
   deleted: false,
   newRecord: async (data: SubmissionRecordType, access_token: string) => {},
-  updateRecord: async (id: number, data: SubmissionRecordType, access_token: string) => {},
+  updateRecord: async (
+    id: number,
+    data: SubmissionRecordType,
+    access_token: string
+  ) => {},
   deleteRecord: async (id: number, access_token: string) => {},
   setUpdated: () => {},
   setCreated: () => {},
@@ -43,7 +54,10 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
 
   const router = useRouter();
 
-  const newRecord = async (data: SubmissionRecordType, access_token: string) => {
+  const newRecord = async (
+    data: SubmissionRecordType,
+    access_token: string
+  ) => {
     try {
       setLoading(true);
 
@@ -62,16 +76,22 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
         setCreated(true);
         router.push("/my-records");
       }
-    } catch (error: any) {
+    } catch (error) {
       setLoading(false);
-      setError(
-        error.response &&
-          (error.response.data.detail || error.response.data.error)
-      );
+      if (axios.isAxiosError(error) && error.response) {
+        setError(
+          error.response &&
+            (error.response.data.detail || error.response.data.error)
+        );
+      }
     }
   };
 
-  const updateRecord = async (id: number, data: SubmissionRecordType, access_token: string) => {
+  const updateRecord = async (
+    id: number,
+    data: SubmissionRecordType,
+    access_token: string
+  ) => {
     try {
       setLoading(true);
 
@@ -89,12 +109,14 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(false);
         setUpdated(true);
       }
-    } catch (error: any) {
+    } catch (error) {
       setLoading(false);
-      setError(
-        error.response &&
-          (error.response.data.detail || error.response.data.error)
-      );
+      if (axios.isAxiosError(error) && error.response) {
+        setError(
+          error.response &&
+            (error.response.data.detail || error.response.data.error)
+        );
+      }
     }
   };
 
@@ -113,13 +135,14 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
 
       setLoading(false);
       setDeleted(true);
-    } catch (error: any) {
-      // console.log(error);
+    } catch (error) {
       setLoading(false);
-      setError(
-        error.response &&
-          (error.response.data.detail || error.response.data.error)
-      );
+      if (axios.isAxiosError(error) && error.response) {
+        setError(
+          error.response &&
+            (error.response.data.detail || error.response.data.error)
+        );
+      }
     }
   };
 

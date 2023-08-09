@@ -1,13 +1,14 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useState, useEffect, createContext } from "react";
 
 import { useRouter } from "next/router";
+import { AccountType } from "@/types/AccountType";
 
 type AuthContextType = {
   loading: boolean;
-  user: any;
+  user: AccountType | null;
   isAuthenticated: boolean;
-  error: any;
+  error: Error | AxiosError | null | undefined;
   login: (data: { username: string; password: string }) => Promise<void>;
   register: (data: {
     firstName: string;
@@ -81,12 +82,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(false);
         router.push("/home");
       }
-    } catch (error: any) {
+    } catch (error) {
       setLoading(false);
-      setError(
-        error.response &&
-          (error.response.data.detail || error.response.data.error)
-      );
+      if (axios.isAxiosError(error) && error.response) {
+        setError(
+          error.response &&
+            (error.response.data.detail || error.response.data.error)
+        );
+      }
     }
   };
 
@@ -115,12 +118,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(false);
         router.push("/login");
       }
-    } catch (error: any) {
+    } catch (error) {
       setLoading(false);
-      setError(
-        error.response &&
-          (error.response.data.detail || error.response.data.error)
-      );
+      if (axios.isAxiosError(error) && error.response) {
+        setError(
+          error.response &&
+            (error.response.data.detail || error.response.data.error)
+        );
+      }
     }
   };
 
@@ -135,14 +140,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(false);
         setUser(res.data.user);
       }
-    } catch (error: any) {
+    } catch (error) {
       setLoading(false);
       SetIsAuthenticated(false);
       setUser(null);
-      setError(
-        error.response &&
-          (error.response.data.detail || error.response.data.error)
-      );
+      if (axios.isAxiosError(error) && error.response) {
+        setError(
+          error.response &&
+            (error.response.data.detail || error.response.data.error)
+        );
+      }
     }
   };
 
@@ -155,14 +162,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setUser(null);
         router.push("/");
       }
-    } catch (error: any) {
+    } catch (error) {
       setLoading(false);
       SetIsAuthenticated(false);
       setUser(null);
-      setError(
-        error.response &&
-          (error.response.data.detail || error.response.data.error)
-      );
+      if (axios.isAxiosError(error) && error.response) {
+        setError(
+          error.response &&
+            (error.response.data.detail || error.response.data.error)
+        );
+      }
     }
   };
 

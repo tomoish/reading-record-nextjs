@@ -4,7 +4,7 @@ import RecordDetails from "@/components/record/RecordDetails";
 import { RecordType } from "@/types/RecordType";
 
 import { isAuthenticatedUser } from "@/utils/isAuthenticated";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 export default function JobDetailsPage({
   record,
@@ -13,10 +13,10 @@ export default function JobDetailsPage({
 }: {
   record: RecordType;
   access_token: string;
-  error: any;
+  error: Error | AxiosError;
 }) {
-  if (error?.detail?.includes("Not found")) return <></>;
-  else if (error?.message?.includes("You can not read this record"))
+  if (axios.isAxiosError(error) && error.response && error.response.data.message.includes("Not found")) return <></>;
+  else if (error.message.includes("You can not read this record"))
     return <></>;
 
   return (
@@ -66,11 +66,19 @@ export async function getServerSideProps({
         access_token,
       },
     };
-  } catch (error: any) {
-    return {
-      props: {
-        error: error.response.data,
-      },
-    };
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      return {
+        props: {
+          error: error.response.data,
+        },
+      };
+    } else if (error instanceof Error) {
+      return {
+        props: {
+          error: error.message,
+        },
+      };
+    }
   }
 }
