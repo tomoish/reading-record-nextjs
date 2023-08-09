@@ -10,3 +10,12 @@ export type RecordType = {
   posted_at: string;
   user: number;
 };
+
+export type SubmissionRecordType = {
+  book_title: string;
+  isbn: string;
+  date: string;
+  first_page: string;
+  final_page: string;
+  impression: string;
+}

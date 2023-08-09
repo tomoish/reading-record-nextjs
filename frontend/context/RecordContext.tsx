@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect, createContext } from "react";
 
 import { useRouter } from "next/router";
+import { SubmissionRecordType } from "@/types/RecordType";
 
 interface RecordContextType {
   loading: boolean;
@@ -9,8 +10,8 @@ interface RecordContextType {
   created: boolean;
   updated: boolean;
   deleted: boolean;
-  newRecord: (data: any, access_token: string) => Promise<void>;
-  updateRecord: (id: number, data: any, access_token: string) => Promise<void>;
+  newRecord: (data: SubmissionRecordType, access_token: string) => Promise<void>;
+  updateRecord: (id: number, data: SubmissionRecordType, access_token: string) => Promise<void>;
   deleteRecord: (id: number, access_token: string) => Promise<void>;
   setUpdated: React.Dispatch<React.SetStateAction<boolean>>;
   setCreated: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,8 +25,8 @@ const RecordContext = createContext<RecordContextType>({
   created: false,
   updated: false,
   deleted: false,
-  newRecord: async (data: any, access_token: string) => {},
-  updateRecord: async (id: number, data: any, access_token: string) => {},
+  newRecord: async (data: SubmissionRecordType, access_token: string) => {},
+  updateRecord: async (id: number, data: SubmissionRecordType, access_token: string) => {},
   deleteRecord: async (id: number, access_token: string) => {},
   setUpdated: () => {},
   setCreated: () => {},
@@ -42,7 +43,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
 
   const router = useRouter();
 
-  const newRecord = async (data: any, access_token: string) => {
+  const newRecord = async (data: SubmissionRecordType, access_token: string) => {
     try {
       setLoading(true);
 
@@ -59,7 +60,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
       if (res.data) {
         setLoading(false);
         setCreated(true);
-        router.push("/home");
+        router.push("/my-records");
       }
     } catch (error: any) {
       setLoading(false);
@@ -70,7 +71,7 @@ export const RecordProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const updateRecord = async (id: number, data: any, access_token: string) => {
+  const updateRecord = async (id: number, data: SubmissionRecordType, access_token: string) => {
     try {
       setLoading(true);
 
