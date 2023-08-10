@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
-from account.models import Account
-from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class RegisterTests(TestCase):
@@ -20,6 +19,10 @@ class RegisterTests(TestCase):
 
         self.assertEqual('User registered.', response.json()['message'])
         self.assertEqual(200, response.status_code)
+        self.assertTrue(User.objects.filter(
+            email='test@test.com'
+        ).exists()
+        )
 
     def test_register_error(self):
         response = Client().post(
@@ -113,5 +116,3 @@ class LoginTests(TestCase):
         self.assertEqual(401, response.status_code)
         self.assertTrue('error' in response.json().keys())
 
-
-    
