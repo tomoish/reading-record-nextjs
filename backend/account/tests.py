@@ -127,7 +127,7 @@ class GetCurrentUserTests(TestCase):
             'password': '123456',
         }
 
-        self.login_data ={
+        self.login_data = {
             'username': 'test@test.com',
             'password': '123456',
         }
@@ -142,7 +142,7 @@ class GetCurrentUserTests(TestCase):
             '/api/token/',
             data=self.login_data
         )
-        
+
         access_token = response.json()['access']
         # print(response.json())
         # print(access_token)
@@ -175,4 +175,5 @@ class GetCurrentUserTests(TestCase):
         # print(response.json())
 
         self.assertEqual(401, response.status_code)
-        self.assertEqual('Login first to access this resource.', response.json()['error'])
+        self.assertEqual('Login first to access this resource.',
+                         response.json()['error'])
