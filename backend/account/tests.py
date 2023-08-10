@@ -64,3 +64,54 @@ class RegisterTests(TestCase):
         self.assertEqual(
             'Ensure this field has at least 6 characters.', response.json()['password'][0])
         self.assertEqual(200, response.status_code)
+
+
+class LoginTests(TestCase):
+
+    def setUp(self):
+        self.user_data = {
+            'first_name': 'test_first_name',
+            'last_name': 'test_last_name',
+            'email': 'test@test.com',
+            'password': '123456',
+        }
+
+        self.login_data = {
+            'username': 'test@test.com',
+            'password': '123456',
+        }
+
+    def test_login(self):
+        response = Client().post(
+            '/api/register/',
+            data=self.user_data
+        )
+
+        response = Client().post(
+            '/api/token/',
+            data=self.login_data
+        )
+
+        self.assertEqual(200, response.status_code)
+        self.assertTrue('refresh' in response.json().keys())
+        self.assertTrue('access' in response.json().keys())
+
+    def test_invalid_login(self):
+        response = Client().post(
+            '/api/register/',
+            data=self.user_data
+        )
+
+        response = Client().post(
+            '/api/token/',
+            data={
+                'username': 'test@test.com',
+                'password': '12345',
+            }
+        )
+
+        self.assertEqual(401, response.status_code)
+        self.assertTrue('error' in response.json().keys())
+
+
+    
