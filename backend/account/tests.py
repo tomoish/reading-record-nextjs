@@ -116,3 +116,63 @@ class LoginTests(TestCase):
         self.assertEqual(401, response.status_code)
         self.assertTrue('error' in response.json().keys())
 
+
+class GetCurrentUserTests(TestCase):
+
+    def setUp(self):
+        self.user_data = {
+            'first_name': 'test_first_name',
+            'last_name': 'test_last_name',
+            'email': 'test@test.com',
+            'password': '123456',
+        }
+
+        self.login_data ={
+            'username': 'test@test.com',
+            'password': '123456',
+        }
+
+    def test_get_current_user(self):
+        response = Client().post(
+            '/api/register/',
+            data=self.user_data
+        )
+
+        response = Client().post(
+            '/api/token/',
+            data=self.login_data
+        )
+        
+        access_token = response.json()['access']
+        # print(response.json())
+        # print(access_token)
+        # print('Bearer ' + access_token)
+
+        response = Client().get(
+            '/api/me/',
+            headers={
+                'authorization': 'Bearer ' + access_token
+            }
+        )
+
+        # print(response)
+        # print(response.json())
+
+        self.assertEqual(200, response.status_code)
+        self.assertEqual('test_first_name', response.json()['first_name'])
+        self.assertEqual('test_last_name', response.json()['last_name'])
+        self.assertEqual('test@test.com', response.json()['email'])
+        self.assertEqual('test@test.com', response.json()['username'])
+
+    def test_invalid_token(self):
+        response = Client().get(
+            '/api/me/',
+            headers={
+                'authorization': ''
+            }
+        )
+        # print(response)
+        # print(response.json())
+
+        self.assertEqual(401, response.status_code)
+        self.assertEqual('Login first to access this resource.', response.json()['error'])
