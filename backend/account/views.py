@@ -32,7 +32,7 @@ def register(request):
             )
         else:
             return Response({
-                'error': 'User already exists'},
+                'error': 'User already exists.'},
                 status=status.HTTP_400_BAD_REQUEST
             )
     else:
