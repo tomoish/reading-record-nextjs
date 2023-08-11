@@ -230,3 +230,66 @@ class GetRecordTests(TestCase):
         self.assertEqual(100, response.json()['final_page'])
         self.assertEqual('GetRecordTests',
                          response.json()['impression'])
+
+
+class DeleteRecordTests(TestCase):
+
+    def setUp(self):
+        self.user_data = {
+            'first_name': 'test_first_name',
+            'last_name': 'test_last_name',
+            'email': 'test@test.com',
+            'password': '123456',
+        }
+
+        self.login_data = {
+            'username': 'test@test.com',
+            'password': '123456',
+        }
+
+        self.record_data = {
+            'book_title': 'DeleteRecordTests',
+            'isbn': '9784098507177',
+            'date': '2023-08-01',
+            'first_page': '2',
+            'final_page': '100',
+            'impression': 'DeleteRecordTests'
+        }
+
+    def get_access_token(self):
+        response = Client().post(
+            '/api/register/',
+            data=self.user_data
+        )
+
+        response = Client().post(
+            '/api/token/',
+            data=self.login_data
+        )
+
+        return response.json()['access']
+
+    def test_get_record(self):
+        access_token = self.get_access_token()
+
+        response = Client().post(
+            '/api/records/new/',
+            data=self.record_data,
+            headers={
+                'authorization': 'Bearer ' + access_token
+            },
+            content_type='application/json'
+        )
+
+        id = response.json()['id']
+
+        response = Client().delete(
+            '/api/records/' + str(id) + '/delete/',
+            data=self.record_data,
+            headers={
+                'authorization': 'Bearer ' + access_token
+            },
+        )
+
+        self.assertEqual(200, response.status_code)
+        self.assertEqual('Record is Deleted.', response.json()['message'])
