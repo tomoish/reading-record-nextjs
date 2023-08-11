@@ -269,7 +269,7 @@ class DeleteRecordTests(TestCase):
 
         return response.json()['access']
 
-    def test_get_record(self):
+    def test_delete_record(self):
         access_token = self.get_access_token()
 
         response = Client().post(
@@ -293,3 +293,100 @@ class DeleteRecordTests(TestCase):
 
         self.assertEqual(200, response.status_code)
         self.assertEqual('Record is Deleted.', response.json()['message'])
+
+
+class GetCurrentUserRecordsTests(TestCase):
+
+    def setUp(self):
+        self.user_data = {
+            'first_name': 'test_first_name',
+            'last_name': 'test_last_name',
+            'email': 'test@test.com',
+            'password': '123456',
+        }
+
+        self.login_data = {
+            'username': 'test@test.com',
+            'password': '123456',
+        }
+
+        self.record_data = {
+            'book_title': 'record 1',
+            'isbn': '9784098507177',
+            'date': '2023-08-01',
+            'first_page': '2',
+            'final_page': '100',
+            'impression': 'record 1'
+        }
+
+        self.record_data2 = {
+            'book_title': 'record 2',
+            'isbn': '9784098510542',
+            'date': '2023-08-05',
+            'first_page': '3',
+            'final_page': '200',
+            'impression': 'record 2'
+        }
+
+    def get_access_token(self):
+        response = Client().post(
+            '/api/register/',
+            data=self.user_data
+        )
+
+        response = Client().post(
+            '/api/token/',
+            data=self.login_data
+        )
+
+        return response.json()['access']
+
+    def test_get_current_user_record(self):
+        access_token = self.get_access_token()
+
+        response = Client().post(
+            '/api/records/new/',
+            data=self.record_data,
+            headers={
+                'authorization': 'Bearer ' + access_token
+            },
+            content_type='application/json'
+        )
+
+        response = Client().post(
+            '/api/records/new/',
+            data=self.record_data2,
+            headers={
+                'authorization': 'Bearer ' + access_token
+            },
+            content_type='application/json'
+        )
+
+        response = Client().get(
+            '/api/me/records/',
+            headers={
+                'authorization': 'Bearer ' + access_token
+            },
+        )
+
+        self.assertEqual(200, response.status_code)
+
+        self.assertEqual('record 2', response.json()[0]['book_title'])
+        self.assertEqual('9784098510542', response.json()[0]['isbn'])
+        self.assertEqual('https://cover.openbd.jp/9784098510542.jpg',
+                         response.json()[0]['thumbnail_url'])
+        self.assertEqual('2023-08-05', response.json()[0]['date'])
+        self.assertEqual(3, response.json()[0]['first_page'])
+        self.assertEqual(200, response.json()[0]['final_page'])
+        self.assertEqual('record 2',
+                         response.json()[0]['impression'])
+
+        self.assertEqual('record 1', response.json()[1]['book_title'])
+        self.assertEqual('9784098507177', response.json()[1]['isbn'])
+        self.assertEqual('https://cover.openbd.jp/9784098507177.jpg',
+                         response.json()[1]['thumbnail_url'])
+        self.assertEqual('2023-08-01', response.json()[1]['date'])
+        self.assertEqual(2, response.json()[1]['first_page'])
+        self.assertEqual(100, response.json()[1]['final_page'])
+        self.assertEqual('record 1',
+                         response.json()[1]['impression'])
