@@ -17,7 +17,7 @@ const Layout = ({
       <Head>
         <title>{title}</title>
       </Head>
-      <div id={id}>
+      <div id={id} className="bg-book-image bg-cover bg-center bg-no-repeat bg-fixed bg-white h-screen">
         <Header />
         {children}
       </div>
