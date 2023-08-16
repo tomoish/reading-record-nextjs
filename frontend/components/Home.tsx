@@ -43,7 +43,7 @@ const Home = () => {
           </Link>
 
           <div
-            className="text-center mx-32 lg:mx-24 md:mx-12 rounded-full p-4 cursor-pointer bg-red-100 hover:bg-red-300 hover:text-white  text-black text-3xl"
+            className="flex items-center justify-center text-center mx-32 lg:mx-24 md:mx-12 rounded-full p-4 cursor-pointer bg-red-100 hover:bg-red-300 hover:text-white  text-black text-3xl"
             onClick={guestLoginHandler}
           >
             Guest user
@@ -52,28 +52,6 @@ const Home = () => {
       </div>
     </div>
   );
-
-  // return (
-  //   <div>
-  //     <div className="main">
-  //       <h1>Let's read a book!</h1>
-  //       <p className="introduction">
-  //         This website is for keeping your own reading records.
-  //       </p>
-  //       <div className="btn">
-  //         <Link href="/register" className="btn-c">
-  //           Create Account
-  //         </Link>
-  //       </div>
-
-  //       <div className="btn">
-  //         <div className="btn-c" onClick={guestLoginHandler}>
-  //           Guest user
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default Home;
