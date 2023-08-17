@@ -15,9 +15,19 @@ export default function JobDetailsPage({
   access_token: string;
   error: Error | AxiosError;
 }) {
-  if (axios.isAxiosError(error) && error.response && error.response.data.message.includes("Not found")) return <></>;
-  else if (error.message.includes("You can not read this record"))
+  if (
+    axios.isAxiosError(error) &&
+    error.response &&
+    error.response.data.message.includes("Not found")
+  ) {
     return <></>;
+  } else if (
+    error instanceof Error &&
+    error.message &&
+    error.message.includes("You can not read this record")
+  ) {
+    return <></>;
+  }
 
   return (
     <Layout title={record.book_title} id="home">
