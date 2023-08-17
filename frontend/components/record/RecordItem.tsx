@@ -5,7 +5,7 @@ import { RecordType } from "@/types/RecordType";
 
 const RecordItem = ({ record }: { record: RecordType }) => {
   return (
-    <div className="h-80 w-2/3 md:w-1/2 lg:w-1/3 mb-2 bg-white border-4 border-red-100 mx-auto grid grid-cols-1 ">
+    <div className="h-96 w-10/12 md:w-1/2 lg:w-2/5 mb-2 bg-white border-4 border-red-100 mx-auto grid grid-cols-1 ">
       <div className="">
         <Link
           href={`/record/${record.id}`}
@@ -36,7 +36,7 @@ const RecordItem = ({ record }: { record: RecordType }) => {
           <p>
             {record.first_page}p - {record.final_page}p
           </p>
-          <h3 className="truncate">
+          <h3 className="">
             <br />
             {record.impression}
           </h3>
