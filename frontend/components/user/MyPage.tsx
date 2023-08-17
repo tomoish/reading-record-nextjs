@@ -11,11 +11,20 @@ const MyPage = () => {
 
   return (
     <div>
-      {user ? <h1>{`${user.first_name}`}, welcome!</h1> : <h1>Loading...</h1>}
+      {user ? (
+        <h1 className="text-center text-black text-3xl font-bold my-4">
+          {`${user.first_name}`}, welcome!
+        </h1>
+      ) : (
+        <h1>Loading...</h1>
+      )}
 
-      <div className="my-page">
-        <div className="my-page-box">
-          <Link href="/record-create" className="btn-my-page">
+      <div className="grid grid-cols-1 h-52 md:grid-cols-2 md:gap-16 gap-y-14 mt-16">
+        <div className="">
+          <Link
+            href="/record-create"
+            className="flex flex-col text-center h-52 mx-16 lg:mx-32 justify-center items-center rounded-2xl p-4 bg-red-100 hover:bg-red-300 hover:text-white"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="60"
@@ -33,11 +42,15 @@ const MyPage = () => {
               </g>
             </svg>
             <br />
-            Post a record
+            <span className="text-center text-2xl">Post a record</span>
           </Link>
         </div>
-        <div className="my-page-box">
-          <Link href="/my-records" className="btn-my-page">
+
+        <div className="">
+          <Link
+            href="/my-records"
+            className="flex flex-col text-center h-52 mx-16 lg:mx-32 justify-center items-center rounded-2xl p-4 bg-red-100 hover:bg-red-300 hover:text-white"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="60"
@@ -52,28 +65,32 @@ const MyPage = () => {
               />
             </svg>
             <br />
-            See the records
+            <span className="text-center text-2xl">See the records</span>
           </Link>
         </div>
-      </div>
 
-      <div className="btn">
-        <Link href="/" className="btn-c" onClick={logoutHandler}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="26"
-            height="26"
-            viewBox="-1 -1 24 24"
+        <div className="md:col-span-2 md:w-1/5 lg:w-1/6 text-center mt-8 mx-auto">
+          <Link
+            href="/"
+            className="flex text-center justify-center items-center rounded-full p-4 bg-red-100 hover:bg-red-300 hover:text-white"
+            onClick={logoutHandler}
           >
-            <path
-              fill="currentColor"
-              fillRule="evenodd"
-              d="M6 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3H6zm10.293 5.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L18.586 13H10a1 1 0 1 1 0-2h8.586l-2.293-2.293a1 1 0 0 1 0-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Logout
-        </Link>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="26"
+              viewBox="-1 -1 24 24"
+            >
+              <path
+                fill="currentColor"
+                fillRule="evenodd"
+                d="M6 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3H6zm10.293 5.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L18.586 13H10a1 1 0 1 1 0-2h8.586l-2.293-2.293a1 1 0 0 1 0-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <span className="text-center text-2xl ml-1">Logout</span>
+          </Link>
+        </div>
       </div>
     </div>
   );
