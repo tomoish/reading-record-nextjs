@@ -22,7 +22,6 @@ const Login = () => {
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log(email, password);
     login({ username: email, password });
   };
 
