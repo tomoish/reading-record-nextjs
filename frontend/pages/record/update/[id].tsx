@@ -17,7 +17,7 @@ export default function UpdateJobPage({
 }) {
 
   return (
-    <Layout title="Update Record" id="home">
+    <Layout title="Update Record">
       <UpdateRecord record={record} access_token={access_token} />
     </Layout>
   );

@@ -3,7 +3,7 @@ import Home from "@/components/Home";
 
 export default function Index() {
   return (
-    <Layout title="home" id="index">
+    <Layout title="home">
       <Home />
     </Layout>
   );

@@ -3,7 +3,7 @@ import MyPage from "@/components/user/MyPage";
 
 export default function Index() {
   return (
-    <Layout title="home" id="home">
+    <Layout title="home">
       <MyPage />
     </Layout>
   );

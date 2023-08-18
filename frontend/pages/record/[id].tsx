@@ -30,7 +30,7 @@ export default function JobDetailsPage({
   }
 
   return (
-    <Layout title={record.book_title} id="home">
+    <Layout title={record.book_title}>
       <RecordDetails record={record} access_token={access_token} />
     </Layout>
   );
