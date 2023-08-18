@@ -37,13 +37,13 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-48 my-20 lg:my-40 gap-y-14">
           <Link
             href="/register"
-            className="text-center mx-32 lg:mx-24 md:mx-12 rounded-full p-4 bg-red-100 hover:bg-red-300 hover:text-white"
+            className="text-center mx-32 md:mx-12 lg:mx-24 xl:mx-32 rounded-full p-4 bg-red-100 hover:bg-red-300 hover:text-white"
           >
             <span className="text-center text-3xl">Create Account</span>
           </Link>
 
           <div
-            className="flex items-center justify-center text-center mx-32 lg:mx-24 md:mx-12 rounded-full p-4 cursor-pointer bg-red-100 hover:bg-red-300 hover:text-white  text-black text-3xl"
+            className="flex items-center justify-center text-center mx-32 md:mx-12 lg:mx-24 xl:mx-32 rounded-full p-4 cursor-pointer bg-red-100 hover:bg-red-300 hover:text-white  text-black text-3xl"
             onClick={guestLoginHandler}
           >
             Guest user
