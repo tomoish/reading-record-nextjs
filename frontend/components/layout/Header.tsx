@@ -7,15 +7,15 @@ const Header = () => {
   const { loading, user } = useContext(AuthContext);
 
   return (
-    <div className="header">
-      <nav className="header-nav container">
-        <div>
+    <div className="p-2 bg-red-100">
+      <div className="container flex mx-auto justify-between flex-col md:flex-row items-center">
+        <div className="mb-3 md:mb-0">
           <Image src="/images/logo.png" alt="HOME" width="131" height="52" priority/>
         </div>
 
         {user ? (
           <div>
-            <Link href="/home" className="sign-in flex text-lg font-bold ">
+            <Link href="/home" className="flex rounded-full p-2 hover:bg-red-300 hover:text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="36"
@@ -27,13 +27,14 @@ const Header = () => {
                   <path d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5Z" />
                 </g>
               </svg>
-              {`${user.first_name}`}
+              <span className="text-lg font-bold">{`${user.first_name}`}</span>
+              
             </Link>
           </div>
         ) : (
           !loading && (
             <div>
-              <Link href="/login" className="sign-in flex text-lg font-bold ">
+              <Link href="/login" className="flex rounded-full p-2 hover:bg-red-300 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="36"
@@ -52,12 +53,12 @@ const Header = () => {
                   />
                   <path fill="none" d="M0 0h36v36H0z" />
                 </svg>
-                Sign in
+                <span className="text-lg font-bold">Sign in</span>
               </Link>
             </div>
           )
         )}
-      </nav>
+      </div>
     </div>
   );
 };

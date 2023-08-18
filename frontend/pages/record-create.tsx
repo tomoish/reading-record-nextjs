@@ -6,7 +6,7 @@ import { isAuthenticatedUser } from "@/utils/isAuthenticated";
 
 export default function NewJobPage({ access_token }: { access_token: string }) {
   return (
-    <Layout title="Post a new Job" id="record-create">
+    <Layout title="Post a new Job">
       <NewRecord access_token={access_token} />
     </Layout>
   );

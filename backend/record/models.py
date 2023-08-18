@@ -12,7 +12,7 @@ class Record(models.Model):
     date = models.DateField()
     first_page = models.IntegerField()
     final_page = models.IntegerField()
-    impression = models.TextField(max_length=200)
+    impression = models.TextField(max_length=100)
     posted_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

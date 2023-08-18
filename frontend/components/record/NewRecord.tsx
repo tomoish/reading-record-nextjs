@@ -41,9 +41,9 @@ const NewRecord = ({ access_token }: { access_token: string }) => {
 
   return (
     <>
-      <div className="form-wrapper2">
+      <div className="bg-gray-100 w-2/3 md:w-2/5 xl:w-1/3 mx-auto mt-6 p-4 text-center text-gray-900">
         <form onSubmit={submitHandler}>
-          <table className="form-item2">
+          <table className="mx-auto [&_input]:h-12 [&_input]:w-4/5 [&_input]:bg-gray-100 [&_input]:border-b-2 focus:[&_input]:border-gray-600 focus:[&_input]:outline-0 focus:[&_textarea]:outline-none">
             <tbody>
               <tr>
                 <th>
@@ -124,47 +124,44 @@ const NewRecord = ({ access_token }: { access_token: string }) => {
                   <textarea
                     cols={40}
                     rows={10}
-                    maxLength={200}
+                    maxLength={100}
                     value={impression}
                     onChange={(e) => setImpression(e.target.value)}
+                    className="h-32 w-4/5 mt-4"
                     required
                   ></textarea>
                 </td>
               </tr>
-              <tr>
-                <td></td>
-                <td>
-                  <div className="register-button">
-                    <button type="submit" className="button">
-                      Record
-                    </button>
-                  </div>
-                </td>
-              </tr>
             </tbody>
           </table>
+          <button
+            type="submit"
+            className="mt-4 mb-0 text-black hover:text-white bg-red-300 hover:bg-red-500 font-medium rounded-lg text-xl sm:w-3/5 px-5 py-2.5 text-center "
+          >
+            Record
+          </button>
         </form>
-        <div className="form-footer2"></div>
       </div>
 
-      <div className="abtn footer-btn">
-        <Link href="home/" className="abtn-c">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill="currentColor"
-              fillRule="evenodd"
-              d="m2.87 7.75l1.97 1.97a.75.75 0 1 1-1.06 1.06L.53 7.53L0 7l.53-.53l3.25-3.25a.75.75 0 0 1 1.06 1.06L2.87 6.25h9.88a3.25 3.25 0 0 1 0 6.5h-2a.75.75 0 0 1 0-1.5h2a1.75 1.75 0 1 0 0-3.5H2.87Z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Back to my page
-        </Link>
-      </div>
+      <Link
+        href="home/"
+        className="flex justify-center items-center rounded-full w-3/5 md:w-1/3 xl:w-1/4 m-auto mt-8 p-4 bg-red-100 hover:bg-red-300 hover:text-white"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill="currentColor"
+            fillRule="evenodd"
+            d="m2.87 7.75l1.97 1.97a.75.75 0 1 1-1.06 1.06L.53 7.53L0 7l.53-.53l3.25-3.25a.75.75 0 0 1 1.06 1.06L2.87 6.25h9.88a3.25 3.25 0 0 1 0 6.5h-2a.75.75 0 0 1 0-1.5h2a1.75 1.75 0 1 0 0-3.5H2.87Z"
+            clipRule="evenodd"
+          />
+        </svg>
+        <span className="ml-4 text-lg">Back to my page</span>
+      </Link>
     </>
   );
 };

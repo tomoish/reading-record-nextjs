@@ -5,6 +5,7 @@ import RecordContext from "@/context/RecordContext";
 import { useRouter } from "next/router";
 
 import { RecordType } from "@/types/RecordType";
+import Link from "next/link";
 
 const MyRecords = ({ records }: { records: RecordType[] }) => {
   const { clearErrors, error, loading, deleted } = useContext(RecordContext);
@@ -19,9 +20,12 @@ const MyRecords = ({ records }: { records: RecordType[] }) => {
 
   return (
     <>
-      <div className="my-page">
-        <div className="abtn">
-          <a href="/record-create/" className="abtn-c">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 mt-12 md:px-12">
+        <div className="mt-4 text-center items-center">
+          <Link
+            href="/record-create/"
+            className="flex justify-center rounded-full mx-16 md:mx-8 lg:mx-24 xl:mx-32 2xl:mx-40 p-4 bg-red-100 hover:bg-red-300 hover:text-white"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -38,11 +42,14 @@ const MyRecords = ({ records }: { records: RecordType[] }) => {
                 <path d="M12.92 1.08a2 2 0 0 0-2.64-.15L4.5 5l-.71 2.64a2.87 2.87 0 0 1 1.71.86a2.87 2.87 0 0 1 .86 1.71L9 9.5l4.07-5.78a2 2 0 0 0-.15-2.64ZM.5 13.5l3.25-3.25" />
               </g>
             </svg>
-            Post a record
-          </a>
+            <span className="ml-2">Post a record</span>
+          </Link>
         </div>
-        <div className="abtn">
-          <a href="/home" className="abtn-c">
+        <div className="mt-4 text-center items-center">
+          <Link
+            href="/home"
+            className="flex justify-center rounded-full mx-16 md:mx-8 lg:mx-24 xl:mx-32 2xl:mx-40 p-4 bg-red-100 hover:bg-red-300 hover:text-white"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -56,12 +63,12 @@ const MyRecords = ({ records }: { records: RecordType[] }) => {
                 clipRule="evenodd"
               />
             </svg>
-            Back to my page
-          </a>
+            <span className="ml-2">Back to my page</span>
+          </Link>
         </div>
       </div>
 
-      <div className="main show_records">
+      <div className="mt-20">
         {records &&
           records.map((record: RecordType) => (
             <RecordItem key={record.id} record={record} />

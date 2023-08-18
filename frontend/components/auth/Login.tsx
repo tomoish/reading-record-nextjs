@@ -22,65 +22,64 @@ const Login = () => {
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log(email, password);
     login({ username: email, password });
   };
 
   return (
-    <div className="form-wrapper">
-      <Link href="/" className="login-logo">
-        <Image src="/images/logo.png" alt="HOME" width="151" height="60" />
+    <div className="bg-gray-200 w-1/2 lg:w-1/3 xl:w-1/4 mx-auto mt-10 p-2 text-center">
+      <Link href="/" className="text-center mt-4 mx-auto w-full">
+        <Image
+          src="/images/logo.png"
+          alt="HOME"
+          width="151"
+          height="60"
+          className="mx-auto my-4"
+        />
       </Link>
 
-      <h1>Sign In</h1>
+      <h1 className="text-center text-black font-bold text-3xl my-2">
+        Sign In
+      </h1>
       <form action="/send-data-here" method="post" onSubmit={submitHandler}>
-        <table className="form-item">
-          <tbody>
-            <tr>
-              <th>
-                <label>Username:</label>
-              </th>
-              <td>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  pattern="\S+@\S+\.\S+"
-                  title="Your email is invalid"
-                  required
-                />
-              </td>
-            </tr>
+        <div className="my-6">
+          {/* <label className="block mb-2 text-sm font-medium text-black ">
+            Username
+          </label> */}
+          <input
+            type="email"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 "
+            placeholder="Username"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            pattern="\S+@\S+\.\S+"
+            title="Your email is invalid"
+            required
+          />
+        </div>
+        <div className="mb-6">
+          {/* <label className="block mb-2 text-sm font-medium text-black ">
+            Password
+          </label> */}
+          <input
+            type="password"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
 
-            <tr>
-              <th>
-                <label>Password:</label>
-              </th>
-              <td>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td></td>
-              <td>
-                <div className="register-button">
-                  <button type="submit" className="button">
-                    Sign In
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <button
+          type="submit"
+          className="text-black hover:text-white bg-red-300 hover:bg-red-500 font-medium rounded-lg text-xl sm:w-3/5 px-5 py-2.5 text-center "
+        >
+          Sign In
+        </button>
+        <br></br>
       </form>
 
-      <div className="form-footer">
+      <div className="text-center text-base py-4 hover:underline">
         <p>
           <Link href="/register">Create an account</Link>
         </p>
