@@ -16,7 +16,9 @@ const MyPage = () => {
           {`${user.first_name}`}, welcome!
         </h1>
       ) : (
-        <h1>Loading...</h1>
+        <h1 className="text-center text-black text-3xl font-bold my-4">
+          Loading...
+        </h1>
       )}
 
       <div className="grid grid-cols-1 h-52 md:grid-cols-2 md:gap-16 gap-y-14 mt-16">
