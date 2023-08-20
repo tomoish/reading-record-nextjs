@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=python,django,next,ts,tailwind,postgres,nginx,docker,aws,vercel" />
+    <img src="https://skillicons.dev/icons?i=python,django,next,ts,tailwind,jest,postgres,nginx,docker,aws,vercel" />
   </a>
 </p>
 
