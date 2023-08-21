@@ -8,8 +8,7 @@ export const isAuthenticatedUser = async (access_token?: string) => {
         token: access_token,
       }
     );
-    if (response.status === 200) return true;
-    return false;
+    return response.status === 200;
   } catch (error) {
     return false;
   }
