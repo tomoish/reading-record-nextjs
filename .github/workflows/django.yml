@@ -69,7 +69,7 @@ jobs:
           && sudo docker compose exec web python manage.py makemigrations\
           && sudo docker compose exec web python manage.py migrate --noinput"
     env:
-      SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+      AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
       EC2_USER: ${{ secrets.EC2_USER }}
       EC2_HOST: ${{ secrets.EC2_HOST }}
 
