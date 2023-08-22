@@ -17,3 +17,4 @@ echo "SECRET_KEY=$SECRET_KEY" >> backend/.env
 echo "ALLOWED_HOSTS=$DJANGO_ALLOWED_HOSTS" >> backend/.env
 echo "DEBUG=$DEBUG" >> backend/.env
 echo "CSRF_TRUSTED_ORIGINS=$CSRF_TRUSTED_ORIGINS" >> backend/.env
+echo "CORS_ALLOWED_ORIGINS=$CORS_ALLOWED_ORIGINS" >> backend/.env
