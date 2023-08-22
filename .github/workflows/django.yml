@@ -36,7 +36,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r backend/requirements.txt
       - name: generate .env
-        run: chmod +x set-up-env.test.sh && sh set-up-env.test.sh
+        run: chmod +x backend/set-up-env.test.sh && sh backend/set-up-env.test.sh
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_DB: ${{ secrets.DATABASE_DB }}
