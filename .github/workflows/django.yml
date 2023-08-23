@@ -5,12 +5,12 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     environment:
       name: "Production – reading-record-nextjs"
     strategy:
@@ -33,7 +33,7 @@ jobs:
       - name: Public IP Install
         id: ip
         uses: haythem/public-ip@v1.2
-        
+
       - name: Checkout
         uses: actions/checkout@v2
       # - uses: actions/checkout@v3
