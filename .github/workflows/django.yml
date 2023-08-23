@@ -44,7 +44,7 @@ jobs:
           sudo ./aws/install --update
           aws --version
 
-     - name: AWS set Credentials
+      - name: AWS set Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
@@ -95,8 +95,8 @@ jobs:
           && sudo docker compose exec web python manage.py makemigrations\
           && sudo docker compose exec web python manage.py migrate --noinput"
           aws ec2 revoke-security-group-ingress --group-id ${{ secrets.EC2_SECURITY_GROUP_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+          
     env:
       AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
       EC2_USER: ${{ secrets.EC2_USER }}
       EC2_HOST: ${{ secrets.EC2_HOST }}
-
