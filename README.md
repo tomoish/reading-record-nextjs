@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=python,django,next,ts,tailwind,jest,postgres,nginx,docker,aws,vercel" />
+    <img src="https://skillicons.dev/icons?i=python,django,next,ts,tailwind,jest,postgres,nginx,docker,aws,vercel,githubactions" />
   </a>
 </p>
 
@@ -25,6 +25,9 @@ https://www.django-reading-record.com/
   - Tailwind CSS
 - database
   - PostgresQL
+- CI/CD
+  - Github Actions
+  - Vercel
 
 ## Production Environment
 - backend
