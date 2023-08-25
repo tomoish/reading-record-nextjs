@@ -8,12 +8,12 @@ class NewRecordTests(TestCase):
         self.user_data = {
             'first_name': 'test_first_name',
             'last_name': 'test_last_name',
-            'email': 'test@test.com',
+            'email': 'test@example.com',
             'password': '123456',
         }
 
         self.login_data = {
-            'username': 'test@test.com',
+            'username': 'test@example.com',
             'password': '123456',
         }
 
@@ -86,12 +86,12 @@ class UpdateRecordTests(TestCase):
         self.user_data = {
             'first_name': 'test_first_name',
             'last_name': 'test_last_name',
-            'email': 'test@test.com',
+            'email': 'test@example.com',
             'password': '123456',
         }
 
         self.login_data = {
-            'username': 'test@test.com',
+            'username': 'test@example.com',
             'password': '123456',
         }
 
@@ -167,12 +167,12 @@ class GetRecordTests(TestCase):
         self.user_data = {
             'first_name': 'test_first_name',
             'last_name': 'test_last_name',
-            'email': 'test@test.com',
+            'email': 'test@example.com',
             'password': '123456',
         }
 
         self.login_data = {
-            'username': 'test@test.com',
+            'username': 'test@example.com',
             'password': '123456',
         }
 
@@ -238,12 +238,12 @@ class DeleteRecordTests(TestCase):
         self.user_data = {
             'first_name': 'test_first_name',
             'last_name': 'test_last_name',
-            'email': 'test@test.com',
+            'email': 'test@example.com',
             'password': '123456',
         }
 
         self.login_data = {
-            'username': 'test@test.com',
+            'username': 'test@example.com',
             'password': '123456',
         }
 
@@ -301,12 +301,12 @@ class GetCurrentUserRecordsTests(TestCase):
         self.user_data = {
             'first_name': 'test_first_name',
             'last_name': 'test_last_name',
-            'email': 'test@test.com',
+            'email': 'test@example.com',
             'password': '123456',
         }
 
         self.login_data = {
-            'username': 'test@test.com',
+            'username': 'test@example.com',
             'password': '123456',
         }
 

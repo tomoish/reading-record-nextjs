@@ -7,7 +7,7 @@ class RegisterTests(TestCase):
         self.user_data = {
             'first_name': 'test_first_name',
             'last_name': 'test_last_name',
-            'email': 'test@test.com',
+            'email': 'test@example.com',
             'password': '123456',
         }
 
@@ -20,7 +20,7 @@ class RegisterTests(TestCase):
         self.assertEqual('User registered.', response.json()['message'])
         self.assertEqual(200, response.status_code)
         self.assertTrue(User.objects.filter(
-            email='test@test.com'
+            email='test@example.com'
         ).exists()
         )
 
@@ -59,7 +59,7 @@ class RegisterTests(TestCase):
             data={
                 'first_name': 'test_first_name',
                 'last_name': 'test_last_name',
-                'email': 'test@test.com',
+                'email': 'test@example.com',
                 'password': '12345',
             },
         )
@@ -75,12 +75,12 @@ class LoginTests(TestCase):
         self.user_data = {
             'first_name': 'test_first_name',
             'last_name': 'test_last_name',
-            'email': 'test@test.com',
+            'email': 'test@example.com',
             'password': '123456',
         }
 
         self.login_data = {
-            'username': 'test@test.com',
+            'username': 'test@example.com',
             'password': '123456',
         }
 
@@ -108,7 +108,7 @@ class LoginTests(TestCase):
         response = Client().post(
             '/api/token/',
             data={
-                'username': 'test@test.com',
+                'username': 'test@example.com',
                 'password': '12345',
             }
         )
@@ -123,12 +123,12 @@ class GetCurrentUserTests(TestCase):
         self.user_data = {
             'first_name': 'test_first_name',
             'last_name': 'test_last_name',
-            'email': 'test@test.com',
+            'email': 'test@example.com',
             'password': '123456',
         }
 
         self.login_data = {
-            'username': 'test@test.com',
+            'username': 'test@example.com',
             'password': '123456',
         }
 
@@ -161,8 +161,8 @@ class GetCurrentUserTests(TestCase):
         self.assertEqual(200, response.status_code)
         self.assertEqual('test_first_name', response.json()['first_name'])
         self.assertEqual('test_last_name', response.json()['last_name'])
-        self.assertEqual('test@test.com', response.json()['email'])
-        self.assertEqual('test@test.com', response.json()['username'])
+        self.assertEqual('test@example.com', response.json()['email'])
+        self.assertEqual('test@example.com', response.json()['username'])
 
     def test_invalid_token(self):
         response = Client().get(
