@@ -19,18 +19,17 @@ class Record(models.Model):
         return self.book_title
 
     def save(self, *args, **kwargs):
-        # openBD api
+        # 国会図書館 api
         if self.isbn is not None:
-            endpoint = 'https://api.openbd.jp/v1/get'
+            endpoint = 'https://iss.ndl.go.jp/thumbnail/'
             params = {
                 'isbn': self.isbn
             }
 
-            result = requests.get(endpoint, params=params)
+            result = requests.get(endpoint + params['isbn'])
 
-            res = result.json()
-            if res is not None and res[0] is not None:
-                self.thumbnail_url = res[0]['summary']['cover']
+            if result.ok:
+                self.thumbnail_url = endpoint + params['isbn']
             else:
                 self.thumbnail_url = None
         else:

@@ -25,6 +25,8 @@ class NewRecordTests(TestCase):
             'impression': 'This book was amazing!'
         }
 
+        self.urlPrefix = 'https://iss.ndl.go.jp/thumbnail/'
+
     def get_access_token(self):
         response = Client().post(
             '/api/register/',
@@ -56,7 +58,7 @@ class NewRecordTests(TestCase):
         self.assertEqual(200, response.status_code)
         self.assertEqual('Sample book', response.json()['book_title'])
         self.assertEqual('9784098507177', response.json()['isbn'])
-        self.assertEqual('https://cover.openbd.jp/9784098507177.jpg',
+        self.assertEqual(self.urlPrefix + '9784098507177',
                          response.json()['thumbnail_url'])
         self.assertEqual('2023-08-01', response.json()['date'])
         self.assertEqual(2, response.json()['first_page'])
@@ -112,6 +114,8 @@ class UpdateRecordTests(TestCase):
             'impression': 'Update'
         }
 
+        self.urlPrefix = 'https://iss.ndl.go.jp/thumbnail/'
+
     def get_access_token(self):
         response = Client().post(
             '/api/register/',
@@ -151,7 +155,7 @@ class UpdateRecordTests(TestCase):
         self.assertEqual(200, response.status_code)
         self.assertEqual('Update book', response.json()['book_title'])
         self.assertEqual('9784098510542', response.json()['isbn'])
-        self.assertEqual('https://cover.openbd.jp/9784098510542.jpg',
+        self.assertEqual(self.urlPrefix + '9784098510542',
                          response.json()['thumbnail_url'])
         self.assertEqual('2023-08-03', response.json()['date'])
         self.assertEqual(4, response.json()['first_page'])
@@ -183,6 +187,8 @@ class GetRecordTests(TestCase):
             'final_page': '100',
             'impression': 'GetRecordTests'
         }
+
+        self.urlPrefix = 'https://iss.ndl.go.jp/thumbnail/'
 
     def get_access_token(self):
         response = Client().post(
@@ -222,7 +228,7 @@ class GetRecordTests(TestCase):
         self.assertEqual(200, response.status_code)
         self.assertEqual('GetRecordTests', response.json()['book_title'])
         self.assertEqual('9784098507177', response.json()['isbn'])
-        self.assertEqual('https://cover.openbd.jp/9784098507177.jpg',
+        self.assertEqual(self.urlPrefix + '9784098507177',
                          response.json()['thumbnail_url'])
         self.assertEqual('2023-08-01', response.json()['date'])
         self.assertEqual(2, response.json()['first_page'])
@@ -254,6 +260,8 @@ class DeleteRecordTests(TestCase):
             'final_page': '100',
             'impression': 'DeleteRecordTests'
         }
+
+        self.urlPrefix = 'https://iss.ndl.go.jp/thumbnail/'
 
     def get_access_token(self):
         response = Client().post(
@@ -327,6 +335,8 @@ class GetCurrentUserRecordsTests(TestCase):
             'impression': 'record 2'
         }
 
+        self.urlPrefix = 'https://iss.ndl.go.jp/thumbnail/'
+
     def get_access_token(self):
         response = Client().post(
             '/api/register/',
@@ -372,7 +382,7 @@ class GetCurrentUserRecordsTests(TestCase):
 
         self.assertEqual('record 2', response.json()[0]['book_title'])
         self.assertEqual('9784098510542', response.json()[0]['isbn'])
-        self.assertEqual('https://cover.openbd.jp/9784098510542.jpg',
+        self.assertEqual(self.urlPrefix + '9784098510542',
                          response.json()[0]['thumbnail_url'])
         self.assertEqual('2023-08-05', response.json()[0]['date'])
         self.assertEqual(3, response.json()[0]['first_page'])
@@ -382,7 +392,7 @@ class GetCurrentUserRecordsTests(TestCase):
 
         self.assertEqual('record 1', response.json()[1]['book_title'])
         self.assertEqual('9784098507177', response.json()[1]['isbn'])
-        self.assertEqual('https://cover.openbd.jp/9784098507177.jpg',
+        self.assertEqual(self.urlPrefix + '9784098507177',
                          response.json()[1]['thumbnail_url'])
         self.assertEqual('2023-08-01', response.json()[1]['date'])
         self.assertEqual(2, response.json()[1]['first_page'])
