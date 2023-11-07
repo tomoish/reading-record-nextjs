@@ -2,7 +2,16 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["cover.openbd.jp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "iss.ndl.go.jp",
+      },
+      {
+        protocol: "https",
+        hostname: "cover.openbd.jp",
+      },
+    ],
   },
   env: {
     API_URL: process.env.API_URL,
